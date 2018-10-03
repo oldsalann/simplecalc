@@ -10,20 +10,43 @@ import Foundation
 
 public class Calculator {
     public func calculate(_ args: [String]) -> Int {
-        /*switch {
-            case :
-        }*/
-        let left : Int = Int(args[0]) ?? 0
-        let op = args[1]
-        let right : Int = Int(args[2]) ?? 0
         var ret : Int = 0
-        switch op {
-        case "+":
-            ret = left + right
-        case "-":
-            ret = left - right
-        default:
-            print("Operator not valid")
+        
+        if args.contains("count") {
+            ret = args.count - 1
+        } else if args.contains("avg") {
+            for i in args {
+                let temp : Int = Int(i) ?? 0
+                ret = ret + temp
+            }
+            if ret != 0 {
+                ret = ret / (args.count - 1)
+            }
+        } else if args.contains("fact") {
+            if args.count == 2 {
+                let upper : Int = Int(args[0]) ?? 0
+                for i in 1..<(upper + 1){
+                    ret = ret * i
+                }
+            }
+        } else { // traditional calculations
+            let left : Int = Int(args[0]) ?? 0
+            let op = args[1]
+            let right : Int = Int(args[2]) ?? 0
+            switch op {
+            case "+":
+                ret = left + right
+            case "-":
+                ret = left - right
+            case "/":
+                ret = left / right
+            case "*":
+                ret = left * right
+            case "%":
+                ret = left % right
+            default:
+                print("Operator not valid")
+            }
         }
         return ret
     }
