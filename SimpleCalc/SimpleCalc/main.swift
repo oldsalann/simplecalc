@@ -11,7 +11,6 @@ import Foundation
 public class Calculator {
     public func calculate(_ args: [String]) -> Int {
         var ret : Int = 0
-        
         if args.contains("count") {
             ret = args.count - 1
         } else if args.contains("avg") {
@@ -59,8 +58,15 @@ public class Calculator {
 
 print("UW Calculator v1")
 print("Enter an expression separated by returns:")
-let first = readLine()!
-let operation = readLine()!
-let second = readLine()!
-print(Calculator().calculate([first, operation, second]))
+if CommandLine.argc > 1 {
+    let str = (CommandLine.arguments).joined(separator:" ")
+    let withoutAppName = str.replacingOccurrences(of: "main.swift ", with:"")
+    print(Calculator().calculate(withoutAppName))
+} else {
+    let first = readLine()!
+    let operation = readLine()!
+    let second = readLine()!
+    print(Calculator().calculate([first, operation, second]))
+}
+
 
