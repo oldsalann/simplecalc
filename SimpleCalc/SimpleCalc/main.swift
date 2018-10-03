@@ -10,6 +10,22 @@ import Foundation
 
 public class Calculator {
     public func calculate(_ args: [String]) -> Int {
+        /*switch {
+            case :
+        }*/
+        let left : Int = Int(args[0]) ?? 0
+        let op = args[1]
+        let right : Int = Int(args[2]) ?? 0
+        var ret : Int = 0
+        switch op {
+        case "+":
+            ret = left + right
+        case "-":
+            ret = left - right
+        default:
+            print("Operator not valid")
+        }
+        return ret
     }
     
     public func calculate(_ arg: String) -> Int {
