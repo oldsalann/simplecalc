@@ -11,9 +11,9 @@ import Foundation
 public class Calculator {
     public func calculate(_ args: [String]) -> Int {
         var ret : Int = 0
-        if args.contains("count") {
+        if args.contains("count") { // count of numbers
             ret = args.count - 1
-        } else if args.contains("avg") {
+        } else if args.contains("avg") { // average of numbers
             for i in args {
                 let temp : Int = Int(i) ?? 0
                 ret = ret + temp
@@ -21,7 +21,7 @@ public class Calculator {
             if ret != 0 {
                 ret = ret / (args.count - 1)
             }
-        } else if args.contains("fact") {
+        } else if args.contains("fact") { // factorial
             if args.count == 2 {
                 ret = 1
                 let upper : Int = Int(args[0]) ?? 0
@@ -51,18 +51,21 @@ public class Calculator {
         return ret
     }
     
+    // makes String input into [String]
     public func calculate(_ arg: String) -> Int {
         return calculate( arg.split(separator: " ").map({ substr in String(substr) }) )
     }
 }
 
-print("UW Calculator v1")
-print("Enter an expression separated by returns:")
+// Switches between command line in terminal and in xCode
+// depending on if it is run with any additional arguments
 if CommandLine.argc > 1 {
     let str = (CommandLine.arguments).joined(separator:" ")
     let withoutAppName = str.replacingOccurrences(of: "main.swift ", with:"")
     print(Calculator().calculate(withoutAppName))
 } else {
+    print("UW Calculator v1")
+    print("Enter an expression separated by returns:")
     let first = readLine()!
     let operation = readLine()!
     let second = readLine()!
