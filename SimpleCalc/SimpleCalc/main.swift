@@ -24,6 +24,7 @@ public class Calculator {
             }
         } else if args.contains("fact") {
             if args.count == 2 {
+                ret = 1
                 let upper : Int = Int(args[0]) ?? 0
                 for i in 1..<(upper + 1){
                     ret = ret * i
